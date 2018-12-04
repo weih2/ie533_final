@@ -1,14 +1,14 @@
 #include "../src/include.h"
 
 int main(){
-  sbm_parameters test_sbm_pars = gen_sbm_pars(100, 1, 1, 4, 0.1);
+  sbm_parameters test_sbm_pars = gen_sbm_pars(100, 1, 1, 5, 0.2);
   adjacency_list sbm_adj_list = generate_sbm(test_sbm_pars);
   influence_list test_influence = generate_influence(sbm_adj_list);
   influence_list test_init_influence = generate_influence(sbm_adj_list);
 
   sparse_csr_weighted test_csr = to_sparse(sbm_adj_list, test_influence);
   sparse_csr_weighted init_test_csr = to_sparse(sbm_adj_list, test_init_influence);
-  network_info test_info = init_info(test_csr, 0.1, 20, 0.8);
+  network_info test_info = init_info(test_csr, 0.1, 30, 0.8);
 
   network_in_device test_nw_info = init_simulation(test_csr, test_info);
   generate_influence(test_nw_info, 0.1);

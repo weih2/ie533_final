@@ -44,7 +44,7 @@ influence_list generate_influence(const adjacency_list& adj_list){
 
     // stubornness of node i
     double& node_i_stubborn = influence[i][n_adj_nodes] = random_uniform();
-    node_i_weights = random_dirichlet(vector<double>(n_adj_nodes, 1));
+    node_i_weights = random_dirichlet(vector<double>(n_adj_nodes, 10));
     for(int j = 0; j < n_adj_nodes; j++){
       influence[i][j] = (node_i_weights[j]) * (1 - node_i_stubborn);
     }

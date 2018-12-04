@@ -3,8 +3,18 @@ using namespace std;
 inline double llh_cal_approx(const double& evidence, const int& status, const double& m){
   double prob_p = evidence > 0 ? 1./(1. - evidence) : (1./(evidence + 1.)/m);
   double prob_n = evidence < 0 ? (1./(evidence + 1.)) : (1./(1. - evidence)/m);
-  double prob_r = evidence > 0 ? (1./evidence) : (-1./evidence) ;
+  double prob_r = evidence > 0 ? (1./evidence) : (-1./evidence);
   double normalizer = prob_n + prob_p + prob_r;
+  if(evidence == 0){
+    switch(status){
+      case -1:
+      return -log(m);
+      case 1:
+      return -log(m);
+      case 0:
+      return 0;
+    }
+  }
   switch(status){
     case -1:
     return log(prob_n / normalizer);
@@ -72,6 +82,5 @@ void accept_proposal(const sparse_csr_weighted& proposal_csr, const network_in_d
   for(int node = linked_node_start; node < linked_node_end; node++){
     nw_host.csr_info.influence[node] = proposal_csr.influence[node];
   }
-
   return;
 }
