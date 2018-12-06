@@ -66,13 +66,16 @@ int* naive_greedy(network_in_device nw_host, network_in_device nw_device, int n_
 
     // copy result back
     cudaMemcpy(objective, sim_greedy.objective, num_nodes * sizeof(int), cudaMemcpyDeviceToHost);
+    cudaDeviceSynchronize();
     // find optimal node and return
     for(int node = 0; node < num_nodes; node ++){
+      if(nw_host.nw_info.nodes_types[node] != NODE_TYPE_REGULAR) continue;
       if(max_obj < objective[node]){
         best_nodes[n_done] = node;
         max_obj = objective[node];
       }
     }
+    cout << "zuihoushi: " << max_obj << endl;
     nw_host.nw_info.nodes_types[best_nodes[n_done]] = *node_type_p;
     cudaMemcpy((nw_device.nw_info.nodes_types + best_nodes[n_done]), node_type_p, sizeof(node_type), cudaMemcpyHostToDevice);
   }

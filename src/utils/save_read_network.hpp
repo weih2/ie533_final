@@ -79,9 +79,9 @@ network_info read_info(string &file_name, n_nodes n){
   file4>>temp;
   *info4.time_length = temp;
   info4.n_threshold=new double();
-  file4>>*info4.n_threshold;
-  info4.p_threshold=new double();
   file4>>*info4.p_threshold;
+  info4.p_threshold=new double();
+  file4>>*info4.n_threshold;
   file4.close();
   return info4;
 }

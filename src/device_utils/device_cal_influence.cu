@@ -36,7 +36,7 @@ void device_cal_evidence(network_in_device nw_device, int node_id, int t){
       *total_activated_n = 1;
     }
 
-    else{
+    else if(nw_info.nodes_types[node_id] == NODE_TYPE_REGULAR){
       *current_evidence = 0;
       *p_activated = 0;
       *n_activated = 0;
@@ -76,12 +76,12 @@ void device_cal_evidence(network_in_device nw_device, int node_id, int t){
     
   }
 
-  if(*current_evidence > p_threshold){
+  if((*current_evidence) > p_threshold){
     *p_activated = 1;
     *n_activated = 0;
     (*total_activated_p) ++;
   }
-  else if(*current_evidence < n_threshold){
+  else if( (*current_evidence) < n_threshold){
     *p_activated = 0;
     *n_activated = 1;
     (*total_activated_n) ++;
