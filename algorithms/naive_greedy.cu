@@ -26,7 +26,7 @@ void cal_obj(simulation_greedy sim_greedy, network_in_device nw_device){
 
 // host : give the best next node
 int* naive_greedy(network_in_device nw_host, network_in_device nw_device, int n_positive){
-  int *best_nodes = new int[n_positive];
+  int *best_nodes = new int[n_positive + 1];
   int max_obj;
 
   const int& num_nodes = *nw_host.csr_info.number_of_nodes;
@@ -75,11 +75,12 @@ int* naive_greedy(network_in_device nw_host, network_in_device nw_device, int n_
         max_obj = objective[node];
       }
     }
-    cout << "zuihoushi: " << max_obj << endl;
+    
     nw_host.nw_info.nodes_types[best_nodes[n_done]] = *node_type_p;
     cudaMemcpy((nw_device.nw_info.nodes_types + best_nodes[n_done]), node_type_p, sizeof(node_type), cudaMemcpyHostToDevice);
   }
-
+  best_nodes[n_positive] = max_obj;
+  
   return best_nodes;
 }
 
