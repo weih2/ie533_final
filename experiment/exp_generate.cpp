@@ -27,9 +27,9 @@ int main(){
 
   for(int i = 0; i < n_n_nodes; i++){
     for(int j = 0; j < n_t_length; j++){
-      exp_sbm_pars = gen_sbm_pars(n_nodes_vec[i], 1, 1, 6, 0.5);
+      exp_sbm_pars = gen_sbm_pars(n_nodes_vec[i], 1, 10, 4, 0.2);
       exp_csr_info = generate_sparse(exp_sbm_pars);
-      exp_nw_info = init_info(exp_csr_info, 0.1, t_length_vec[j], 0.8);
+      exp_nw_info = init_info(exp_csr_info, 0.05, t_length_vec[j], 0.6);
 
       exp_nw_host = init_simulation(exp_csr_info, exp_nw_info);
 
