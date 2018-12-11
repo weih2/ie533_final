@@ -8,6 +8,7 @@
 #include<vector>
 #include<fstream>
 #include<string>
+#include <cstdio>
 
 #include "network_types.hpp"
 

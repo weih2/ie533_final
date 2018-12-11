@@ -11,7 +11,7 @@ init_info(sparse_csr_weighted &csr_info, const double& p_negative,
 
 using namespace std;
 int main(){
-  sbm_parameters exp_sbm_pars = gen_sbm_pars(20, 1, 1, 3, 0.5);
+  sbm_parameters exp_sbm_pars = gen_sbm_pars(20, 1, 1, 6, 0.5);
   sparse_csr_weighted exp_csr_info = generate_sparse(exp_sbm_pars);
   network_info exp_nw_info = init_info(exp_csr_info, 0.1, 10, 0.8);
 
