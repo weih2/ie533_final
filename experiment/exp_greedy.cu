@@ -39,10 +39,9 @@ int main(){
       nw_device = cp_to_device(nw_host.csr_info, nw_host.nw_info);
 
       int *greedy_result = naive_greedy(nw_host, nw_device, 5);
+      cout << exp_info_filename << endl;
       cout << greedy_result[5] << endl;
-      break;
     }
-    break;
   }
   return 0;
 }
