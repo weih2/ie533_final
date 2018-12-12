@@ -9,6 +9,7 @@
 #include<fstream>
 #include<string>
 #include <cstdio>
+#include <time.h>
 
 #include "network_types.hpp"
 

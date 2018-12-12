@@ -28,6 +28,8 @@ int main(){
   t_length_vec.push_back(100);
   // {10, 20, 40, 60, 100};
 
+  clock_t t_start, t_end;
+
   for(int i = 0; i < n_n_nodes; i++){
     for(int j = 0; j < n_t_length; j++){
       sprintf(filename_buffer, "exp_csr_%d_%d.data",n_nodes_vec[i],t_length_vec[j]);
@@ -38,7 +40,10 @@ int main(){
       nw_host = read_network(exp_info_filename, exp_csr_filename);
       nw_device = cp_to_device(nw_host.csr_info, nw_host.nw_info);
 
+      t_start = clock();
       int *greedy_result = naive_greedy(nw_host, nw_device, 5);
+      t_end = clock();
+      cout << "time spent" << (t_end - t_start) * 1.0 / CLOCKS_PER_SEC * 1000 << endl;
       cout << exp_info_filename << endl;
       cout << greedy_result[5] << endl;
     }
